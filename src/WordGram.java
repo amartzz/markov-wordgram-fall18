@@ -7,6 +7,7 @@
 
 public class WordGram {
 	
+	
 	private String[] myWords;   
 	private String myToString;  // cached string
 	private int myHash;         // cached hash value
@@ -19,8 +20,16 @@ public class WordGram {
 	 */
 	public WordGram(String[] source, int start, int size) {
 		myWords = new String[size];
-		// TODO: initialize myWords and ...
-	}
+		for (int j=0; j< size; j++) {
+			myWords[j]= source[j + start];
+		}
+		
+		String myToString= null;
+		int myHash= 0;
+		}
+			
+		// DONE: initialize myWords, myToString, myHash
+	
 
 	/**
 	 * Return string at specific index in this WordGram
@@ -35,28 +44,48 @@ public class WordGram {
 	}
 
 	/**
-	 * Complete this comment
+	 * gets order or size of the WordGram
 	 * @return
 	 */
 	public int length(){
-		// TODO: change this
-		return 0;
+		// DONE change this
+	
+	int theL= myWords.length;
+		return theL;
 	}
 
 
 	@Override
-	public boolean equals(Object o) {
-		if (! (o instanceof WordGram) || o == null){
+	public boolean equals(Object other) {
+		if (! (other instanceof WordGram) || other == null){
 			return false;
 		}
-
-	    // TODO: complete this method
+		WordGram wg= (WordGram) other;
+		//if (other instanceof WordGram) {
+			if (wg.length() != myWords.length) {
+			return false;	
+			}
+		for (int i=0; i< wg.length(); i++) {
+			if (!(wg.wordAt(i).equals(myWords[i]))) {
+				return false;
+			}
+		}
+		
+	    // DONE: complete this method
+	
+		
 		return true;
 	}
 
 	@Override
 	public int hashCode(){
-		// TODO: complete this method
+		// DONE: complete this method
+		//String localWords= myWords.toString();
+		if (myHash==0) {
+		String newString= this.toString();
+		myHash= newString.hashCode();
+		}
+		
 		return myHash;
 	}
 	
@@ -67,14 +96,38 @@ public class WordGram {
 	 * @return
 	 */
 	public WordGram shiftAdd(String last) {
-		WordGram wg = new WordGram(myWords,0,myWords.length);
-		// TODO: Complete this method
+		//WordGram wg = new WordGram(myWords,0,myWords.length);
+		// DONE: Complete this method
+		
+		int k = myWords.length;
+		String[] placehold= new String[k];
+		for (int i=0; i<k; i++) {
+			if(i==k-1) {
+				placehold[i]=last;
+			}
+			else {
+				placehold[i]= myWords[i+1];
+			}
+			
+					}
+		
+		//placehold.replace(k-1, last);
+		WordGram wg= new WordGram(placehold, 0, k);
 		return wg;
 	}
 
 	@Override
+	/**
+	 * @return myToString
+	 */
+	
 	public String toString(){
-		// TODO: Complete this method	
+		// DONE: Complete this method
+		// NEED TO CHANGE THIS TO RECEIVE FULL CREDIT
+		if (myToString==null) {
+		myToString= String.join(" ", myWords);
+		}
+		
 		return myToString;
 	}
 }
