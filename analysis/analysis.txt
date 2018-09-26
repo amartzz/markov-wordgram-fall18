@@ -1,6 +1,6 @@
 Ana Martinez apm36
 
-Run WordGramDiver for wordgrams of size 2-10 and record
+Run WordGramDriver for wordgrams of size 2-10 and record
 the number of WordGram values/objects that occur more than
 once as reported by the runs. For example, with WSIZE = 2,
 which generates 2-grams, the output of benchmark and benchmarkShift
@@ -15,25 +15,44 @@ values of WSIZE
 WSIZE    # duplicates
 2        60,453
 3        10,756
-4
-5
-7
-8
-9
-10
+4		  1,987
+5		    667
+7		    226
+8			151
+9			105
+10			 73
 
 =====
 Explain in your own words the conceptual differences between 
 the benchmark and benchmarkShift methods. 
+construction of the wordgram is different, but results in the
+same wordgram. 
+
+
 Answer these questions: 
 
 (1) Why the results of these methods should be the same in 
 terms of changes made to the HashSet parameter.
+they are creating the same wordgram that consists of wordgram elements 
 
 (2) What are the conceptual differences between the two
 benchmarking methods
+just 
+using different syntax at some points like using ArrayList/list.toArray instead of creating
+a String[
+
 
 (3) Is the total amount of memory allocated for arrays
 the same or different in the two methods? Account for
 arrays created in the methods and arrays created by
 WordGram objects. Try to be quantitative in answering.
+they're different; when you create a String[] you allocate the size of the String[]
+while  a list you can keep adding elements, the shift method should run 
+more quickly because it uses a list instead of string[]
+
+
+
+
+
+
+
